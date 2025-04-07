@@ -1,6 +1,7 @@
 <div class="container my-5">
     <div class="card shadow-sm border-0">
       <div class="card-header bg-light bg-gradient">
+
         <h4 class="card-title fw-bold text-primary mb-0" *ngIf="!book.idBook else title">
           <i class="bi bi-book me-2"></i>Nuevo Libro
         </h4>
@@ -10,6 +11,7 @@
                 <i class="bi bi-book me-2"></i>Editar Libro
               </h4>
         </ng-template>
+
       </div>
 
 
@@ -37,19 +39,11 @@
           <!-- Género y Stock en misma fila -->
           <div class="row mb-4">
             <div class="col-md-6">
-              <label for="genre" class="form-label fw-medium">Género</label>
-              <select class="form-select" id="genre" 
-                      [(ngModel)]="book.genre" name="genre" required>
-                <option value="" disabled selected>Seleccione un género</option>
-                <option value="Ficción">Ficción</option>
-                <option value="Novela">Novela</option>
-                <option value="Ciencia Ficción">Ciencia Ficción</option>
-                <option value="Fantasía">Fantasía</option>
-                <option value="Terror">Terror</option>
-                <option value="Biografía">Biografía</option>
-                <option value="Historia">Historia</option>
-                <option value="Poesía">Poesía</option>
-              </select>
+              <label for="genre" class="form-label fw-medium">Género</label> 
+              <input type="text" class="form-control" id="genre" 
+              [(ngModel)]="book.genre" name="genre"
+              required placeholder="Ingrese el género del Libro">
+              <div class="form-text text-muted">Ej: Novela, Ciencia Ficción</div>
             </div>
             <div class="col-md-6">
               <label for="stock" class="form-label fw-medium">Stock Disponible</label>
@@ -67,17 +61,19 @@
                    required placeholder="Ej: 978-3-16-148410-0">
             <div class="form-text text-muted">Ingrese el código ISBN de 13 dígitos</div>
           </div>
+
           
           <!-- Botones -->
           <div class="d-flex justify-content-end gap-3 pt-3 border-top">
-            <button type="button" class="btn btn-outline-secondary" 
-                    >
-              <i class="bi bi-x-circle me-2"></i>Cancelar
-            </button>
-            <button type="submit" class="btn btn-primary" 
-                    [disabled]="!bookForm.form.valid">
-              <i class="bi bi-save me-2"></i>Guardar Libro
-            </button>
+
+            <a class="btn btn-secondary" href="" [routerLink]="['/books']">Cancelar</a>
+
+            <button type="submit" class="btn btn-primary" (click)="create()" *ngIf="!book.idBook else elseBlock">Registrar libro</button>
+          
+            <ng-template #elseBlock>
+              <button role="button" class="btn btn-primary"(click)="update()">Actualizar Libro</button>
+            </ng-template>
+
           </div>
         </form>
       </div>

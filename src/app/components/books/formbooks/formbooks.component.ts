@@ -7,7 +7,7 @@ import { BookService } from '../../../services/book/book.service';
 
 @Component({
   selector: 'app-formbooks',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './formbooks.component.html',
   styleUrl: './formbooks.component.css'
 })
@@ -47,7 +47,8 @@ export class FormbooksComponent implements OnInit {
   }
 
   update():void{
-    this.bookService.updateBook(this.book).subscribe(
+    this.bookService.updateBook(this.book.idBook , this.book).subscribe(
+      
       res=>this.router.navigate(['books'])
     )
   }

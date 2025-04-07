@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 export class BooksComponent implements OnInit {
   
   books:Book[] = [];
+  router: any;
 
   constructor(private bookService: BookService) {}
 
@@ -21,8 +22,19 @@ export class BooksComponent implements OnInit {
       this.bookService.getAllBooks().subscribe(
       e=>this.books = e
     );
-
   }
+
+  delete(id: number): void {
+    if (confirm('¿Estás seguro de eliminar este libro?')) {
+      this.bookService.deleteBook(id).subscribe({
+        error: err => {
+          console.error(err);
+          alert(err.error?.message || 'Error al eliminar el libro');
+        }
+      });
+    }
+  }
+
 }
 
 
