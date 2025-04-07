@@ -1,0 +1,85 @@
+<div class="container my-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-light bg-gradient">
+        <h4 class="card-title fw-bold text-primary mb-0" *ngIf="!book.idBook else title">
+          <i class="bi bi-book me-2"></i>Nuevo Libro
+        </h4>
+
+        <ng-template #title>
+            <h4 class="card-title fw-bold text-primary mb-0">
+                <i class="bi bi-book me-2"></i>Editar Libro
+              </h4>
+        </ng-template>
+      </div>
+
+
+      <div class="card-body">
+        <form #bookForm="ngForm">
+          
+          <!-- Título -->
+          <div class="mb-4">
+            <label for="title" class="form-label fw-medium">Título del Libro</label>
+            <input type="text" class="form-control" id="title" 
+                   [(ngModel)]="book.title" name="title" 
+                   required placeholder="Ingrese el título del libro">
+            <div class="form-text text-muted">Ej: Cien años de soledad</div>
+          </div>
+          
+          <!-- Autor -->
+          <div class="mb-4">
+            <label for="author" class="form-label fw-medium">Autor</label>
+            <input type="text" class="form-control" id="author" 
+                   [(ngModel)]="book.author" name="author" 
+                   required placeholder="Nombre completo del autor">
+            <div class="form-text text-muted">Ej: Gabriel García Márquez</div>
+          </div>
+          
+          <!-- Género y Stock en misma fila -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <label for="genre" class="form-label fw-medium">Género</label>
+              <select class="form-select" id="genre" 
+                      [(ngModel)]="book.genre" name="genre" required>
+                <option value="" disabled selected>Seleccione un género</option>
+                <option value="Ficción">Ficción</option>
+                <option value="Novela">Novela</option>
+                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                <option value="Fantasía">Fantasía</option>
+                <option value="Terror">Terror</option>
+                <option value="Biografía">Biografía</option>
+                <option value="Historia">Historia</option>
+                <option value="Poesía">Poesía</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="stock" class="form-label fw-medium">Stock Disponible</label>
+              <input type="number" class="form-control" id="stock" 
+                     [(ngModel)]="book.stock" name="stock" 
+                     min="0" required placeholder="0">
+            </div>
+          </div>
+          
+          <!-- ISBN -->
+          <div class="mb-4">
+            <label for="isbn" class="form-label fw-medium">ISBN</label>
+            <input type="text" class="form-control" id="isbn" 
+                   [(ngModel)]="book.isbn" name="isbn" 
+                   required placeholder="Ej: 978-3-16-148410-0">
+            <div class="form-text text-muted">Ingrese el código ISBN de 13 dígitos</div>
+          </div>
+          
+          <!-- Botones -->
+          <div class="d-flex justify-content-end gap-3 pt-3 border-top">
+            <button type="button" class="btn btn-outline-secondary" 
+                    >
+              <i class="bi bi-x-circle me-2"></i>Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary" 
+                    [disabled]="!bookForm.form.valid">
+              <i class="bi bi-save me-2"></i>Guardar Libro
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

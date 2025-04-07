@@ -1,0 +1,23 @@
+/* footer.component.css */
+
+/* Hace que el contenido principal ocupe toda la altura */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Flexbox para que el contenido ocupe toda la altura */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Estilo del footer */
+  .footer {
+    margin-top: auto;
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
