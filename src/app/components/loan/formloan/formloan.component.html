@@ -1,0 +1,36 @@
+<form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="container mt-5 p-4 bg-light rounded shadow-sm">
+    <h2 class="text-center mb-4">Formulario de Préstamo</h2>
+
+    <div class="mb-3">
+        <label for="idStudent" class="form-label">Seleccionar Estudiante</label>
+        <select id="idStudent" formControlName="idStudent" class="form-select">
+          <option value="" disabled selected>Seleccione un estudiante</option>
+          <option *ngFor="let student of students" [value]="student.idStudent">{{ student.name }}</option>
+        </select>
+      </div>
+  
+    <div class="mb-3">
+      <label for="idBook" class="form-label">Seleccionar Libro</label>
+      <select id="idBook" formControlName="idBook" class="form-select">
+        <option value="" disabled selected>Seleccione un libro</option>
+        <option *ngFor="let book of books" [value]="book.idBook">{{ book.title }}</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label for="loanDate" class="form-label">Fecha de Préstamo</label>
+      <input type="date" id="loanDate" formControlName="loanDate" class="form-control">
+    </div>
+  
+    <div class="mb-3">
+      <label for="returnDate" class="form-label">Fecha de Retorno</label>
+      <input type="date" id="returnDate" formControlName="returnDate" class="form-control">
+    </div>
+  
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="loanForm.invalid">
+        Crear Préstamo
+      </button>
+    </div>
+  </form>
+  

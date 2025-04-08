@@ -3,6 +3,9 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +15,8 @@ import { CommonModule } from '@angular/common';
       FooterComponent,
        CommonModule,
         RouterOutlet,
-
+        MatDialogModule,
+        MatButtonModule
           ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

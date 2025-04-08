@@ -1,1 +1,56 @@
-<p>loan works!</p>
+<div class="container my-4">
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-semibold text-primary">Préstamos Registrados</h5>
+        <a class="btn btn-primary" href="" [routerLink]="['/loans/new']">Nuevo</a>
+      </div>
+      
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light">
+              <tr>
+                <th class="text-center" style="width: 50px;">#</th>
+                <th>Estudiante</th>
+                <th>Libro</th>
+                <th class="text-center">Préstamo</th>
+                <th class="text-center">Devolución</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let loan of loans; let i = index" class="border-top">
+                <td class="text-center text-muted fw-medium">{{i + 1}}</td>
+                
+                <td>
+                  <div class="d-flex flex-column">
+                    <span class="fw-medium">{{loan.student?.name}}</span>
+                    <small class="text-muted"> {{loan.student?.school}}</small>
+                  </div>
+                </td>
+                
+                <td>
+                  <div class="d-flex flex-column">
+                    <span class="fw-medium">{{loan.book?.title}}</span>
+                  </div>
+                </td>
+                
+                
+                <td class="text-center">
+                  <span class="badge bg-light text-dark">
+                    {{loan.loanDate | date:'dd/MM/yyyy'}}
+                  </span>
+                </td>
+                
+                <td class="text-center">
+                  <span class="badge bg-light text-dark">
+                    {{loan.returnDate | date:'dd/MM/yyyy'}}
+                  </span>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
