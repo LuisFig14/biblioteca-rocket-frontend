@@ -1,37 +1,61 @@
-<div class="container my-4">
-    <h3 class="text-center mb-3">Lista de Estudiantes</h3>
-    <div class="table-responsive">
-      <table class="table table-striped table-hover table-bordered align-middle">
-        <thead class="table-dark text-center">
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Escuela</th>
-            <th>Teléfono</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Ana López</td>
-            <td>Instituto Nacional</td>
-            <td>555-123-4567</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Carlos Pérez</td>
-            <td>Escuela Técnica 3</td>
-            <td>555-987-6543</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Lucía Ramírez</td>
-            <td>Preparatoria Juárez</td>
-            <td>555-321-7890</td>
-          </tr>
-          <!-- Puedes agregar más estudiantes aquí -->
-        </tbody>
-      </table>
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold text-primary">Control de estudiantes</h3>
+    <a class="btn btn-primary" href="" [routerLink]="['/students/new']">
+      <i class="bi bi-plus-circle me-2"></i>Nuevo Estudiante
+    </a>
+  </div>
+  
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light bg-gradient">
+            <tr>
+              <th scope="col" class="text-center fw-medium text-uppercase text-secondary" style="width: 50px;">#</th>
+              <th scope="col" class="fw-medium text-uppercase text-secondary">Nombre</th>
+              <th scope="col" class="fw-medium text-uppercase text-secondary">Escuela</th>
+              <th scope="col" class="fw-medium text-uppercase text-secondary">Teléfono</th>
+              <th scope="col" class="text-center fw-medium text-uppercase text-secondary">Editar</th>
+              <th scope="col" class="text-center fw-medium text-uppercase text-secondary">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students; let i = index" class="border-top">
+              <td class="text-center text-muted fw-medium">{{ i + 1 }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-0">{{ student.name }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="badge bg-primary bg-opacity-10 text-primary">{{ student.school }}</span>
+              </td>
+              <td>
+                <span class="text-muted">{{ student.phone}}</span>
+              </td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center gap-2">
+                  <td class="text-center">
+                    <a href="#" class="" [routerLink]="['/students/edit', student.idStudent]">
+                      <img class="max-w-xs mx-auto" width="25" height="25" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/external-edit-interface-kiranshastry-solid-kiranshastry.png" alt="edit-company"/>
+                    </a>
+                  </td>
+                </div>
+                <td class="text-center">
+
+                  <a (click)="delete(student.idStudent)">
+                    <img class="max-w-xs mx-auto" width="25" height="25" src="https://img.icons8.com/ios/50/delete--v1.png" alt="delete"/>
+                  </a>
+                <td>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   
+</div>

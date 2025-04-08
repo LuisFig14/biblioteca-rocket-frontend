@@ -1,0 +1,66 @@
+<div class="container my-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-light bg-gradient">
+
+        <h4 class="card-title fw-bold text-primary mb-0" *ngIf="!student.idStudent else title">
+          <i class="bi bi-person me-2"></i>Nuevo Estudiante
+        </h4>
+
+        <ng-template #title>
+            <h4 class="card-title fw-bold text-primary mb-0">
+                <i class="bi bi-person me-2"></i>Editar Estudiante
+              </h4>
+        </ng-template>
+
+      </div>
+
+      <div class="card-body">
+        <form #studentForm="ngForm">
+          
+          <!-- Nombre -->
+          <div class="mb-4">
+            <label for="name" class="form-label fw-medium">Nombre Completo</label>
+            <input type="text" class="form-control" id="name" 
+                   [(ngModel)]="student.name" name="name" 
+                   required placeholder="Ingrese el nombre completo">
+            <div class="form-text text-muted">Ej: María González Pérez</div>
+          </div>
+          
+          <!-- Escuela -->
+          <div class="mb-4">
+            <label for="school" class="form-label fw-medium">Escuela/Institución</label>
+            <input type="text" class="form-control" id="school" 
+                   [(ngModel)]="student.school" name="school" 
+                   required placeholder="Nombre de la escuela o institución">
+            <div class="form-text text-muted">Ej: Universidad Nacional</div>
+          </div>
+          
+          <!-- Teléfono y otros campos en misma fila -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <label for="phone" class="form-label fw-medium">Teléfono</label>
+              <input type="tel" class="form-control" id="phone" 
+                     [(ngModel)]="student.phone" name="phone"
+                     required placeholder="Número de contacto">
+              <div class="form-text text-muted">Ej: 555-123-4567</div>
+            </div>
+          </div>
+          
+          <!-- Botones -->
+          <div class="d-flex justify-content-end gap-3 pt-3 border-top">
+            <a class="btn btn-secondary" href="" [routerLink]="['/students']">Cancelar</a>
+
+            <button type="submit" class="btn btn-primary" (click)="createStudent()" *ngIf="!student.idStudent else elseBlock">
+              Registrar Estudiante
+            </button>
+          
+            <ng-template #elseBlock>
+              <button role="button" (click)="updateStudent()" class="btn btn-primary" >
+                Actualizar Estudiante
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="container my-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="fw-bold text-primary">Lista de Libros</h3>
+    <h3 class="fw-bold text-primary">Inventario de Libros</h3>
 
     <a class="btn btn-primary" href="" [routerLink]="['/books/new']">Nuevo</a>
     
@@ -23,8 +23,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let book of books" class="border-top">
-              <td class="text-center text-muted fw-medium"></td>
+            <tr *ngFor="let book of books let i = index" class="border-top">
+              <td class="text-center text-muted fw-medium">{{ i + 1 }}</td>
               <td>
                 <div class="d-flex align-items-center">
                   <div class="ms-3">
